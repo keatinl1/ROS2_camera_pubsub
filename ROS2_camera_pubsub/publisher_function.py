@@ -19,7 +19,6 @@ class CameraPublisherNode(Node):
 
     def publish_camera_feed(self):
         # Capture a frame from the camera
-        t_at_start = time.time()
 
         _, frame = self.cap.read()
 
@@ -33,8 +32,6 @@ class CameraPublisherNode(Node):
         img_msg.height = compressed_frame.shape[0]
         img_msg.step = compressed_frame.shape[1] * 3
         img_msg.data = compressed_frame.tobytes()
-
-        print(f'FPS: {1 / (time.time() - t_at_start)}')
 
         # Publish the image message
         self.publisher_.publish(img_msg)

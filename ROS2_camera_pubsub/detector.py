@@ -16,6 +16,8 @@ class CameraSubscriberNode(Node):
             Image, "camera_feed", self.process_camera_frame, 10)
         self.subscription_  # prevent unused variable warning
 
+        self.publisher_ = self.create_publisher(Image, "detection_feed", 10)
+
         # Set up the OpenCV bridge
         self.bridge = CvBridge()
 
@@ -33,10 +35,16 @@ class CameraSubscriberNode(Node):
             # draw the face bounding box on the image
             cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-        # Process the camera frame
-        # Here we just show the image using OpenCV's imshow() function
-        cv2.imshow("Camera Feed", image)
-        cv2.waitKey(1)
+        # Convert the frame to a ROS2 Image message
+        img_msg = Image()
+        img_msg.header.stamp = self.get_clock().now().to_msg()
+        img_msg.encoding = "bgr8"
+        img_msg.width = image.shape[1]
+        img_msg.height = image.shape[0]
+        img_msg.step = image.shape[1] * 3
+        img_msg.data = image.tobytes()
+
+        self.publisher_.publish(img_msg)
 
 def main(args=None):
     rclpy.init(args=args)

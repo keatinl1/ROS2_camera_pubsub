@@ -10,7 +10,7 @@ class CameraSubscriberNode(Node):
 
         # Create a subscriber for the camera feed
         self.subscription_ = self.create_subscription(
-            Image, "camera_feed", self.process_camera_frame, 10)
+            Image, "detection_feed", self.process_camera_frame, 10)
         self.subscription_  # prevent unused variable warning
 
         # Set up the OpenCV bridge

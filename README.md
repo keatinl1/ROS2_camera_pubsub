@@ -4,5 +4,6 @@ Just reading frames from the camera, publishing them to the camera_feed topic an
 
 I used jpeg compression in the publisher node before publishing. The resulting frame rate was 3.680342FPS when compression was used. The additional steps of processing meant a reduction in frame rate.
 
-I then used a Haar Cascading CLassifier to detect faces.
+I then used a Haar Cascading Classifier to detect faces.
 
+It can all be launched with a launch script.

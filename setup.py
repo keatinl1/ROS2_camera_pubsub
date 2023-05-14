@@ -21,7 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
                 'talker = ROS2_camera_pubsub.publisher_function:main',
-                'listener = ROS2_camera_pubsub.subscriber_function:main',                
+                'listener = ROS2_camera_pubsub.detector:main',                
         ],
     },
 )

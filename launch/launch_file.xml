@@ -1,0 +1,25 @@
+<launch>
+  <!-- Start Node 1 -->
+  <node
+    pkg="ROS2_camera_pubsub"
+    exec="talker"
+    name="publisher_function"
+    output="screen">
+  </node>
+
+  <!-- Start Node 2 -->
+  <node
+    pkg="ROS2_camera_pubsub"
+    exec="listener"
+    name="detector"
+    output="screen">
+  </node>
+
+  <!-- Start Node 3 -->
+  <node
+    pkg="ROS2_camera_pubsub"
+    exec="presenter"
+    name="subscriber_function"
+    output="screen">
+  </node>
+</launch>
